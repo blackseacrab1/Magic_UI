@@ -23,4 +23,4 @@ def test_go_to_main_page(driver):
     desks_page = DesksPage(driver)
     desks_page.open_page()
     desks_page.click_logo()
-    desks_page.check_on_main_page()
+    desks_page.check_categories_title("Categories")
