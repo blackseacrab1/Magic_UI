@@ -26,6 +26,11 @@ class ProductPage(BasePage):
         btn = wait.until(EC.element_to_be_clickable(loc.add_to_cart_btn))
         btn.click()
 
+    def click_continue_shopping(self):
+        wait = WebDriverWait(self.driver, 10)
+        btn = wait.until(EC.element_to_be_clickable(loc.continue_shopping_btn))
+        btn.click()
+
     def check_cart_quantity(self, expected_qty):
         wait = WebDriverWait(self.driver, 10)
         wait.until(EC.visibility_of_element_located(loc.cart_quantity))
