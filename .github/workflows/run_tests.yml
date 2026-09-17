@@ -20,24 +20,28 @@ jobs:
     name: Run autotests
     steps:
       - name: Checkout autotests
-        uses: actions/checkout@v7
+        uses: actions/checkout@v4
+
       - name: Set up Python environment
-        uses: actions/setup-python@v7
+        uses: actions/setup-python@v5
         with:
           python-version: '3.13'
+
       - name: Install dependencies
         run: pip install -r requirements.txt
-      - name: run all tests
-        if: "github.event.inputs.deployment_target == 'all'"
-        run: pytest -m all
-      - name: run regression tests
-        if: "github.event.inputs.deployment_target == 'regression'"
+
+      - name: Run all tests
+        if: github.event.inputs.deployment_target == 'all'
+        run: pytest
+
+      - name: Run regression tests
+        if: github.event.inputs.deployment_target == 'regression'
         run: pytest -m regression
-      - name: run extended tests
-        if: "github.event.inputs.deployment_target == 'extended'"
+
+      - name: Run extended tests
+        if: github.event.inputs.deployment_target == 'extended'
         run: pytest -m extended
-      - name: run smoke tests
-        if: "github.event.inputs.deployment_target == 'smoke'"
+
+      - name: Run smoke tests
+        if: github.event.inputs.deployment_target == 'smoke'
         run: pytest -m smoke
-        
-        
